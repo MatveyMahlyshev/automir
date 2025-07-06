@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from pydantic_settings import BaseSettings
 
 class DBSettings(BaseModel):
-    url: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/automir_db"
+    url: str = "postgresql+asyncpg://automir:automir@localhost:5432/automir_db"
     echo: bool = True
 
 class Settings(BaseSettings):
