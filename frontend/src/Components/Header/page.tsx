@@ -4,7 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import plug from "@/img/plug.png";
 import {Montserrat_Alternates} from "next/font/google";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {usePathname} from "next/navigation";
+import { routes } from '@/routes'
 
 const montserrat = Montserrat_Alternates({
     weight: ['400', '600', '700', '900'],
@@ -13,6 +15,11 @@ const montserrat = Montserrat_Alternates({
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const pathname = usePathname();
+
+    useEffect(() => {
+        setIsOpen(false);
+    }, [pathname]);
 
     return (
         <header className="flex w-full items-center p-3 md:p-4 justify-between">
@@ -47,16 +54,16 @@ export default function Header() {
 
                 {isOpen && (
                     <ul className="absolute top-full right-0 mt-2 flex flex-col bg-white shadow-lg rounded-lg p-3 z-40 min-w-[160px]">
-                        <li className='text-center py-1.5'><Link href='/' onClick={() => setIsOpen(false)}>Автомобили</Link></li>
-                        <li className='text-center py-1.5'><Link href='/' onClick={() => setIsOpen(false)}>Прицепы</Link></li>
-                        <li className='text-center py-1.5'><Link href='/' onClick={() => setIsOpen(false)}>Услуги</Link></li>
+                        <li className={`text-center py-1.5 ${pathname === routes.cars ? 'underline underline-offset-5' : ''}`}><Link href='/' onClick={() => setIsOpen(false)}>Автомобили</Link></li>
+                        <li className={`text-center py-1.5 ${pathname === routes.trailers ? 'underline underline-offset-5' : ''}`}><Link href='/' onClick={() => setIsOpen(false)}>Прицепы</Link></li>
+                        <li className={`text-center py-1.5 ${pathname === routes.services ? 'underline underline-offset-5' : ''}`}><Link href='/' onClick={() => setIsOpen(false)}>Услуги</Link></li>
                     </ul>
                 )}
 
                 <ul className="hidden md:flex flex-row items-center justify-center space-x-3 lg:space-x-6 text-base md:text-lg lg:text-xl w-full">
-                    <li><Link href='/'>Автомобили</Link></li>
-                    <li><Link href='/'>Прицепы</Link></li>
-                    <li><Link href='/'>Услуги</Link></li>
+                    <li className={`${pathname === routes.cars ? 'underline underline-offset-5' : ''}`}><Link href='/'>Автомобили</Link></li>
+                    <li className={`${pathname === routes.trailers ? 'underline underline-offset-5' : ''}`}><Link href='/'>Прицепы</Link></li>
+                    <li className={`${pathname === routes.services ? 'underline underline-offset-5' : ''}`}><Link href='/'>Услуги</Link></li>
                 </ul>
             </nav>
 
