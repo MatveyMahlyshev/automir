@@ -4,9 +4,16 @@ import uvicorn
 
 app = FastAPI()
 
+
 @app.get("/")
 def index():
-    return {"message": "Server is working.",}
+    return {
+        "message": "Server is working.",
+    }
+
 
 if __name__ == "__main__":
-    uvicorn.run(app="main:app", reload=True,)
+    uvicorn.run(
+        app="main:app",
+        reload=True,
+    )
