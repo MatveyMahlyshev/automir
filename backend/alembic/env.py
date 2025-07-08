@@ -23,6 +23,7 @@ if config.config_file_name is not None:
 
 from core.models import Base
 from core.config import settings
+
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
