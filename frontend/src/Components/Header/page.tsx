@@ -54,16 +54,16 @@ export default function Header() {
 
                 {isOpen && (
                     <ul className="absolute top-full right-0 mt-2 flex flex-col bg-white shadow-lg rounded-lg p-3 z-40 min-w-[160px]">
-                        <li className={`text-center py-1.5 ${pathname === routes.cars ? 'underline underline-offset-5' : ''}`}><Link href='/' onClick={() => setIsOpen(false)}>Автомобили</Link></li>
-                        <li className={`text-center py-1.5 ${pathname === routes.trailers ? 'underline underline-offset-5' : ''}`}><Link href='/' onClick={() => setIsOpen(false)}>Прицепы</Link></li>
-                        <li className={`text-center py-1.5 ${pathname === routes.services ? 'underline underline-offset-5' : ''}`}><Link href='/' onClick={() => setIsOpen(false)}>Услуги</Link></li>
+                        <li className={`text-center py-1.5 ${pathname === routes.cars ? 'underline underline-offset-5' : ''}`}><Link href={routes.cars} onClick={() => setIsOpen(false)}>Автомобили</Link></li>
+                        <li className={`text-center py-1.5 ${pathname === routes.trailers ? 'underline underline-offset-5' : ''}`}><Link href={routes.trailers} onClick={() => setIsOpen(false)}>Прицепы</Link></li>
+                        <li className={`text-center py-1.5 ${pathname === routes.services ? 'underline underline-offset-5' : ''}`}><Link href={routes.services} onClick={() => setIsOpen(false)}>Услуги</Link></li>
                     </ul>
                 )}
 
                 <ul className="hidden md:flex flex-row items-center justify-center space-x-3 lg:space-x-6 text-base md:text-lg lg:text-xl w-full">
-                    <li className={`${pathname === routes.cars ? 'underline underline-offset-5' : ''}`}><Link href='/'>Автомобили</Link></li>
-                    <li className={`${pathname === routes.trailers ? 'underline underline-offset-5' : ''}`}><Link href='/'>Прицепы</Link></li>
-                    <li className={`${pathname === routes.services ? 'underline underline-offset-5' : ''}`}><Link href='/'>Услуги</Link></li>
+                    <li className={`${pathname === routes.cars ? 'underline underline-offset-5' : ''}`}><Link href={routes.cars}>Автомобили</Link></li>
+                    <li className={`${pathname === routes.trailers ? 'underline underline-offset-5' : ''}`}><Link href={routes.trailers}>Прицепы</Link></li>
+                    <li className={`${pathname === routes.services ? 'underline underline-offset-5' : ''}`}><Link href={routes.services}>Услуги</Link></li>
                 </ul>
             </nav>
 

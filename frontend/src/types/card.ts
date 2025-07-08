@@ -15,3 +15,13 @@ export interface CarStats {
     status: string,
     desc: string,
 }
+
+export interface TrailerStats {
+    name: string,
+    trailer_length: string,
+    trailer_width: string,
+    trailer_height: string,
+    trailer_weight: string,
+    spring_type: string,
+    desc: string
+}
