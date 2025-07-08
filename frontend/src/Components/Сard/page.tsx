@@ -18,9 +18,9 @@ export default function Card({image, stats, price}: {
 }) {
 
     return (
-        <div className="flex flex-col border-2 pl-2 pr-2 rounded-2xl text-base lg:text-xl">
-            <div className="w-full h-2/4 flex items-center justify-center">
-                <div className="flex rounded-2xl overflow-hidden w-full h-full items-center justify-center">
+        <div className="flex flex-col pt-3 pb-5 border-2 pl-2 pr-2 rounded-2xl text-base lg:text-xl">
+            <div className="w-full max-h-1/3 flex items-center justify-center">
+                <div className="flex rounded-2xl overflow-hidden w-auto h-full items-center justify-center">
                     <Image src={image} alt={''} className='w-auto h-full'/>
                 </div>
             </div>
@@ -47,8 +47,8 @@ export default function Card({image, stats, price}: {
             <div>
                 <span>{stats.desc}</span>
             </div>
-            <p className='pt-2'>Цена: {price}</p>
-            <div className="flex items-center justify-around py-5 flex-col lg:flex-row">
+            <p className='py-10'>Цена: {price}</p>
+            <div className="flex items-center justify-around flex-col lg:flex-row">
                 <button
                     type="submit"
                     className="bg-[#C03134] p-3 text-white rounded-full hover:scale-110 transition-transform duration-300 ease-in-out transform origin-center flex items-center justify-center">
