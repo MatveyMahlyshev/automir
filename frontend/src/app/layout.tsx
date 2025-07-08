@@ -1,5 +1,6 @@
 import "./globals.css";
 import Header from '../Components/Header/page';
+import Footer from '../Components/Footer/page';
 
 export default function RootLayout({
   children,
@@ -10,9 +11,10 @@ export default function RootLayout({
 
   return (
     <html lang="ru">
-      <body>
+      <body className="min-h-screen flex flex-col">
       <Header />
         {children}
+      <Footer />
       </body>
     </html>
   );

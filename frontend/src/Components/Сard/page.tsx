@@ -19,9 +19,9 @@ export default function Card({image, stats, price}: {
 
     return (
         <div className="flex flex-col border-2 pl-2 pr-2 rounded-2xl text-base lg:text-xl">
-            <div className="w-full h-3/4 flex items-center justify-center px-2 py-4">
-                <div className="flex rounded-2xl overflow-hidden w-full h-full items-center">
-                    <Image src={image} alt={''} className='w-full max-h-full'/>
+            <div className="w-full h-2/4 flex items-center justify-center">
+                <div className="flex rounded-2xl overflow-hidden w-full h-full items-center justify-center">
+                    <Image src={image} alt={''} className='w-auto h-full'/>
                 </div>
             </div>
 
@@ -65,8 +65,7 @@ export default function Card({image, stats, price}: {
                     href="/"
                     className="text-blue-700 hover:underline underline-offset-4 whitespace-nowrap transition-all duration-200 hover:text-blue-900"
                 >
-                    Развернуть
-                    <span className="ml-1 text-xl">&rarr;</span>
+                    Развернуть<span className="text-xl">&rarr;</span>
                 </Link>
             </div>
 
