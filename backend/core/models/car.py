@@ -5,7 +5,7 @@ from .base import Base
 
 
 class Car(Base):
-    title: Mapped[str] = mapped_column(String(50))
+    title: Mapped[str] = mapped_column(String(50), nullable=False)
     engine: Mapped[str] = mapped_column(String(50))
     fuel_type: Mapped[str] = mapped_column(String(50))
     year: Mapped[int] = mapped_column(Integer)
