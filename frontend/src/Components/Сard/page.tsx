@@ -1,11 +1,21 @@
 'use client'
 import Image, {StaticImageData} from "next/image";
-import {CarStats} from "@/types/card";
+import {CarStats, TrailerStats} from "@/types/card";
 import Link from "next/link";
 
+function isCarStats(stats: CarStats | TrailerStats): stats is CarStats {
+    return 'mileage' in stats;
+}
 
-export default function Card({image, stats, price}: { image: StaticImageData, stats: CarStats, price: number }) {
+function isTrailerStats(stats: CarStats | TrailerStats): stats is TrailerStats {
+    return 'trailer_length' in stats;
+}
 
+export default function Card({image, stats, price}: {
+    image: StaticImageData,
+    stats: CarStats | TrailerStats,
+    price: number
+}) {
 
     return (
         <div className="flex flex-col border-2 pl-2 pr-2 rounded-2xl text-base lg:text-xl">
@@ -17,9 +27,20 @@ export default function Card({image, stats, price}: { image: StaticImageData, st
 
             <div>
                 <ul>
-                    <li className='font-bold'>{stats.name} {stats.year}</li>
-                    <li>Поколение: {stats.gen}</li>
-                    <li>Комплектация: {stats.modification}</li>
+                    <li className='font-bold'>
+                        <h3>{stats.name} {isCarStats(stats) ? stats.year : ''}</h3></li>
+                    {isCarStats(stats) && (
+                        <>
+                            <li>Поколение: {stats.gen}</li>
+                            <li>Комплектация: {stats.modification}</li>
+                        </>
+                    )}
+                    {isTrailerStats(stats) && (
+                        <>
+                            <li>Грузоподъемность: {stats.trailer_weight}</li>
+                            <li>Количество осей: {stats.spring_type}</li>
+                        </>
+                    )}
                 </ul>
             </div>
 
