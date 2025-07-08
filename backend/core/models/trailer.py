@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Text, Integer
 
 from . import Base
@@ -12,3 +12,5 @@ class Trailer(Base):
     body_volume: Mapped[str] = mapped_column(String(100))
     trailer_weight: Mapped[str] = mapped_column(String(100))
     description: Mapped[str] = mapped_column(Text)
+
+    product = relationship("Product", back_populates="trailer", uselist=False)

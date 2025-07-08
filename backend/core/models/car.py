@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Integer, Text
 
 from .base import Base
@@ -19,3 +19,5 @@ class Car(Base):
     generation: Mapped[int] = mapped_column(Integer)
     trim_level: Mapped[str] = mapped_column(String(50))
     description: Mapped[str] = mapped_column(Text)
+
+    product = relationship("Product", back_populates="car", uselist=False)
