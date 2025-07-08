@@ -5,9 +5,10 @@ from . import Base
 
 
 class Trailer(Base):
-    axes_count: Mapped[int] = mapped_column(Integer, nullable=False)
-    load_capacity: Mapped[str] = mapped_column(String(100), nullable=False)
-    trailer_length: Mapped[str] = mapped_column(String(100), nullable=False)
-    body_volume: Mapped[str] = mapped_column(String(100), nullable=False)
-    trailer_weight: Mapped[str] = mapped_column(String(100), nullable=False)
+    title: Mapped[str] = mapped_column(String(50))
+    axes_count: Mapped[int] = mapped_column(Integer)
+    load_capacity: Mapped[str] = mapped_column(String(100))
+    trailer_length: Mapped[str] = mapped_column(String(100))
+    body_volume: Mapped[str] = mapped_column(String(100))
+    trailer_weight: Mapped[str] = mapped_column(String(100))
     description: Mapped[str] = mapped_column(Text)
