@@ -18,5 +18,5 @@ class Product(Base):
     car = relationship("Car", back_populates="product", uselist=False)
     trailer = relationship("Trailer", back_populates="product", uselist=False)
     images = relationship(
-        "Product_image", back_populates="product", cascade="all, delete-orphan"
+        "ProductImage", back_populates="product", cascade="all, delete-orphan"
     )
