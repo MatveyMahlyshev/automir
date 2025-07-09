@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import String, Boolean, LargeBinary
 
 from . import Base
@@ -13,3 +13,7 @@ class User(Base):
     surname: Mapped[str] = mapped_column(String(50), nullable=False)
     patronymic: Mapped[str] = mapped_column(String(50), nullable=False)
     phone_number: Mapped[str] = mapped_column(String(25), nullable=False)
+
+    reservations = relationship(
+        "Reservation", back_populates="user", cascade="all, delete-orphan"
+    )
