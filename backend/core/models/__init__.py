@@ -5,6 +5,7 @@ __all__ = (
     "Car",
     "Product",
     "Product_image",
+    "Reservation",
 )
 
 from .base import Base
@@ -13,3 +14,4 @@ from .trailer import Trailer
 from .car import Car
 from .product import Product
 from .product_image import Product_image
+from .reservation import Reservation
