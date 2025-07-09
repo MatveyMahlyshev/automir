@@ -20,4 +20,6 @@ class Car(Base):
     trim_level: Mapped[str] = mapped_column(String(50))
     description: Mapped[str] = mapped_column(Text)
 
-    product = relationship("Product", back_populates="car", uselist=False)
+    product = relationship(
+        "Product", back_populates="car", uselist=False, cascade="all, delete-orphan"
+    )
