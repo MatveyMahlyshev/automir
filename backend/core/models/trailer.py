@@ -13,4 +13,6 @@ class Trailer(Base):
     trailer_weight: Mapped[str] = mapped_column(String(100))
     description: Mapped[str] = mapped_column(Text)
 
-    product = relationship("Product", back_populates="trailer", uselist=False)
+    product = relationship(
+        "Product", back_populates="trailer", uselist=False, cascade="all, delete-orphan"
+    )
