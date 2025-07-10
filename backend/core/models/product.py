@@ -1,11 +1,11 @@
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import Float, ForeignKey, String
+from sqlalchemy import Integer, ForeignKey, String
 
 from . import Base
 
 
 class Product(Base):
-    price: Mapped[float] = mapped_column(Float)
+    price: Mapped[int] = mapped_column(Integer)
     type: Mapped[str] = mapped_column(String(50), nullable=False)
 
     car_id: Mapped[int] = mapped_column(

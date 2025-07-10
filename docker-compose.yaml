@@ -21,7 +21,7 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-      - next_build:/app/.next  # ← добавь это
+      - next_build:/app/.next  
   
   backend:
     build:
@@ -30,8 +30,8 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./backend:/backend:ro  # Только для чтения
-      - /backend/.venv  # Отдельный том для виртуального окружения
+      - ./backend:/backend:ro  
+      - /backend/.venv  
     environment:
       - PYTHONPATH=/backend
     depends_on:

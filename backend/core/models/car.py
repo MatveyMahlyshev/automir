@@ -16,7 +16,7 @@ class Car(Base):
     mileage: Mapped[int] = mapped_column(Integer)
     owners: Mapped[int] = mapped_column(Integer)
     steering_wheel: Mapped[str] = mapped_column(String(50))
-    generation: Mapped[int] = mapped_column(Integer)
+    generation: Mapped[str] = mapped_column(String(50))
     trim_level: Mapped[str] = mapped_column(String(50))
     description: Mapped[str] = mapped_column(Text)
 
