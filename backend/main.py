@@ -18,10 +18,3 @@ def index():
     return {
         "message": "Server is working.",
     }
-
-
-if __name__ == "__main__":
-    uvicorn.run(
-        app="main:app",
-        reload=True,
-    )
