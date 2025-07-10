@@ -41,9 +41,7 @@ def upgrade() -> None:
         sa.Column("id", sa.Integer(), autoincrement=True, nullable=False),
         sa.PrimaryKeyConstraint("id"),
     )
-    op.add_column(
-        "trailers", sa.Column("axes_count", sa.Integer(), nullable=False)
-    )
+    op.add_column("trailers", sa.Column("axes_count", sa.Integer(), nullable=False))
     op.add_column(
         "trailers",
         sa.Column("load_capacity", sa.String(length=100), nullable=False),
