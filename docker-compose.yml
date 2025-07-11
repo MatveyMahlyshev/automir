@@ -1,7 +1,7 @@
 services:
   db:
     image: postgres:16
-    container_name: auto_db
+    container_name: automir_database
     restart: always
     environment:
       POSTGRES_USER: automir
@@ -15,9 +15,10 @@ services:
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
+      dockerfile: frontend.Dockerfile
     ports:
       - "3000:3000"
+    container_name: automir_frontend
     volumes:
       - ./frontend:/app
       - /app/node_modules
@@ -26,19 +27,20 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./backend:/backend:ro  
-      - /backend/.venv  
-    environment:
-      - PYTHONPATH=/backend
+      dockerfile: backend.Dockerfile
+    container_name: automir_backend
+    restart: always
     depends_on:
       - db
+    ports:
+      - "8000:8000"
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./backend:/backend:Z
+
   minio:
     image: quay.io/minio/minio
-    container_name: minio
+    container_name: automir_s3
     ports:
       - "9000:9000"
       - "9001:9001"  
@@ -49,7 +51,6 @@ services:
       - minio_data:/data
     command: server /data --console-address ":9001"
     restart: unless-stopped
-
 
 volumes:
   postgres_data:
