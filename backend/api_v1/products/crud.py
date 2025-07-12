@@ -34,7 +34,7 @@ async def create_auto(
 
     for img in images:
         content = await img.read()
-        image_url = upload_file_to_s3(content, img.filename, img.content_type)
+        image_url = upload_file_to_s3(content, car_product.id, img.content_type)
         image = ProductImage(product_id=car_product.id, image=image_url)
         session.add(image)
 

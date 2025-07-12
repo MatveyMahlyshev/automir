@@ -11,8 +11,8 @@ s3 = boto3.client(
 BUCKET_NAME = "media"
 
 
-def upload_file_to_s3(file_content: bytes, filename: str, content_type: str) -> str:
-    unique_name = f"{uuid.uuid4()}_{filename}"
+def upload_file_to_s3(file_content: bytes, file_id: int, content_type: str) -> str:
+    unique_name = f"{uuid.uuid4()}_{file_id}"
     s3.put_object(
         Bucket=BUCKET_NAME, Key=unique_name, Body=file_content, ContentType=content_type
     )
