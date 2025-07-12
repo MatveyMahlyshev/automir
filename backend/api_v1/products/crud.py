@@ -29,13 +29,13 @@ async def create_auto(
     await session.flush()
 
     car_product = Product(price=product.price, type="car", car_id=car.id)
-    session.add(car)
+    session.add(car_product)
     await session.flush()
 
     for img in images:
         content = await img.read()
         image_url = upload_file_to_s3(content, img.filename, img.content_type)
-        image = ProductImage(product_id=car_product.car_id, image=image_url)
+        image = ProductImage(product_id=car_product.id, image=image_url)
         session.add(image)
 
     await session.commit()

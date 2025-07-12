@@ -43,13 +43,19 @@ services:
     container_name: automir_s3
     ports:
       - "9000:9000"
-      - "9001:9001"  
+      - "9001:9001"
     environment:
       MINIO_ROOT_USER: admin
       MINIO_ROOT_PASSWORD: password123
+      MINIO_DEFAULT_BUCKETS: "media,otherbucket"  # Убрал пробел после запятой
     volumes:
       - minio_data:/data
     command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
     restart: unless-stopped
 
 volumes:

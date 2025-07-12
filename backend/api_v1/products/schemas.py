@@ -1,12 +1,15 @@
 from pydantic import BaseModel, Field
 from typing import Optional
+from datetime import datetime
+
+
 
 
 class ProductCreateCar(BaseModel):
     title: str = Field(min_length=5)
     engine: Optional[str] = None
     fuel_type: Optional[str] = None
-    year: int = Field(gt=1900)
+    year: int = Field(gt=1900, le=datetime.now().year)
     transmission: Optional[str] = None
     drivetrain: Optional[str] = None
     body_type: Optional[str] = None

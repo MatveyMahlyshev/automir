@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings
 
 class DBSettings(BaseModel):
     url: str = "postgresql+asyncpg://automir:automir@localhost:5432/automir_db"
-    echo: bool = True
+    echo: bool = False
 
 
 class Settings(BaseSettings):

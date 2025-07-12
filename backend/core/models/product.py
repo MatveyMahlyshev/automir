@@ -5,7 +5,7 @@ from . import Base
 
 
 class Product(Base):
-    price: Mapped[int] = mapped_column(Integer)
+    price: Mapped[int] = mapped_column(Integer, nullable=False)
     type: Mapped[str] = mapped_column(String(50), nullable=False)
 
     car_id: Mapped[int] = mapped_column(
