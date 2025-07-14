@@ -67,7 +67,7 @@ export default function Header() {
                 </ul>
             </nav>
 
-            <Link href='/' className="flex items-center min-w-fit ml-2">
+            <Link href={routes.auth} className="flex items-center min-w-fit ml-2">
                 <span className='mr-2 hidden lg:inline text-sm md:text-base'>Войти/Регистрация</span>
                 <Image className='w-6 h-6 md:w-8 md:h-8 rounded-full' src={plug} alt={''}/>
             </Link>
