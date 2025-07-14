@@ -6,6 +6,7 @@ export interface CarStats {
     passport: string,
     owners_count: number,
     modification: string,
+    conditions: string,
     engine_capacity: string,
     engine_type: string,
     gearbox: string,

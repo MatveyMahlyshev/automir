@@ -5,7 +5,7 @@ import car_plug_vert from "../img/car-plug-vert.png"
 export default function Home() {
     return (
         <main className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:grid-cols-3 lg:gap-8 m-10">
-            <Card image={car_plug}
+            <Card image={[car_plug, car_plug_vert]}
                   stats={{
                       name: "Hyundai Sonata",
                       gen: "VII",
@@ -22,9 +22,10 @@ export default function Home() {
                       wheel_position: 'Левый',
                       status: 'свободно',
                       desc: 'Lorem ipsum',
+                      conditions: ''
                   }}
                  price={3950000}/>
-            <Card image={car_plug_vert}
+            <Card  image={[car_plug_vert, car_plug]}
                   stats={{
                       name: "Hyundai Sonata",
                       gen: "VII",
@@ -33,7 +34,7 @@ export default function Home() {
                       passport: 'Электронный',
                       owners_count: 2,
                       modification: '2.0 MPI AT Classic',
-                      engine_capacity: '2.0',
+                      engine_capacity: '2.0 (189 л.с.)',
                       engine_type: 'бензин',
                       gearbox: 'АКПП',
                       drive: 'Передний',
@@ -41,9 +42,10 @@ export default function Home() {
                       wheel_position: 'Левый',
                       status: 'свободно',
                       desc: 'Lorem ipsum',
+                      conditions: ''
                   }}
                  price={3950000}/>
-            <Card image={car_plug}
+            <Card image={[car_plug, car_plug_vert]}
                   stats={{
                       name: "Hyundai Sonata",
                       gen: "VII",
@@ -60,6 +62,7 @@ export default function Home() {
                       wheel_position: 'Левый',
                       status: 'свободно',
                       desc: 'Lorem ipsum',
+                      conditions: ''
                   }}
                  price={3950000}/>
         </main>
