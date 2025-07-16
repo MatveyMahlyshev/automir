@@ -7,6 +7,12 @@ import whatsApp from "../../img/whats-app-logo.png"
 import viber from "../../img/viber-logo.png"
 import vk from "../../img/vk-logo.png"
 
+declare global {
+    interface Window {
+        ymaps?: any;
+    }
+}
+
 export default function Footer(){
     useEffect(() => {
         const initMap = () => {
@@ -37,7 +43,7 @@ export default function Footer(){
     }, []);
     return (
         <footer className="flex flex-col md:flex-row flex-wrap justify-between items-start gap-6 px-6 py-10 bg-gray-100 text-sm md:text-base">
-            
+
             <div className="flex flex-col gap-1">
                 <p><strong>Телефон:</strong> 8 (123) 456-78-90</p>
                 <p><strong>Почта:</strong> example@mail.ru</p>
