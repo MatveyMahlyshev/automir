@@ -43,7 +43,6 @@ export default function Card({image, stats, price}: {
                     </ul>
                 </div>
 
-
                 <div className="py-5">
                     <span className="line-clamp-5">{stats.desc}</span>
                 </div>
