@@ -1,7 +1,9 @@
 from fastapi import UploadFile, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.exc import IntegrityError
-from fastapi.exceptions import HTTPException, ValidationException
+from fastapi.exceptions import HTTPException
+from sqlalchemy import select, desc, Result
+from sqlalchemy.orm import selectinload, joinedload
 
 from .schemas import ProductCreateCar
 from core.models import Car, Product, ProductImage
@@ -43,11 +45,15 @@ async def create_auto(
             try:
                 content = await img.read()
 
-                s3_image = await upload_file_to_s3(content, car_product.id, img.content_type)
+                s3_image = await upload_file_to_s3(
+                    content, car_product.id, img.content_type
+                )
                 uploaded_images_keys.append(s3_image["unique_name"])
                 urls.append(s3_image["url"])
 
-                db_image = ProductImage(product_id=car_product.id, image=s3_image["url"])
+                db_image = ProductImage(
+                    product_id=car_product.id, image=s3_image["url"]
+                )
                 session.add(db_image)
             finally:
                 await img.close()
@@ -69,3 +75,14 @@ async def create_auto(
             raise HTTPException(
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=str(e)
             )
+
+
+async def get_cars(session: AsyncSession):
+    stmt = (
+        select(Car)
+        .options(joinedload(Car.product).selectinload(Product.images))
+        .order_by(desc(Car.id))
+    )
+    result: Result = await session.execute(statement=stmt)
+    cars = result.scalars().all()
+    return cars
