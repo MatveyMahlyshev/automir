@@ -105,18 +105,12 @@ async def create_product(
 
 
 async def get_products(session: AsyncSession, type: str):
-    if type == TYPE.CAR:
-        stmt = (
-            select(Car)
-            .options(joinedload(Car.product).selectinload(Product.images))
-            .order_by(desc(Car.id))
-        )
-    else:
-        stmt = (
-            select(Trailer)
-            .options(joinedload(Trailer.product).selectinload(Product.images))
-            .order_by(desc(Trailer.id))
-        )
+    product_object = Car if type == TYPE.CAR else Trailer
+    stmt = (
+        select(product_object)
+        .options(joinedload(product_object.product).selectinload(Product.images))
+        .order_by(desc(product_object.id))
+    )
     result: Result = await session.execute(statement=stmt)
     products = result.scalars().all()
     return products
