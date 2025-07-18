@@ -10,6 +10,11 @@ from core.models import Car, Product, ProductImage, Trailer
 from services.s3 import upload_file_to_s3, delete_file_from_s3
 
 
+class TYPE:
+    CAR = "car"
+    TRAILER = "trailer"
+
+
 async def create_product(
     product_in: ProductCreateCar | ProductCreateTrailer,
     images: list[UploadFile],
@@ -18,7 +23,7 @@ async def create_product(
 ):
     uploaded_images_keys = []
     try:
-        if type == "car":
+        if type == TYPE.CAR:
             product_object = Car(
                 title=product_in.title,
                 engine=product_in.engine,
@@ -51,7 +56,7 @@ async def create_product(
         session.add(product_object)
         await session.flush()
 
-        if type == "car":
+        if type == TYPE.CAR:
             product = Product(
                 price=product_in.price, type=type, car_id=product_object.id
             )
@@ -82,7 +87,7 @@ async def create_product(
 
         await session.commit()
         return {
-            "car" if type == "car" else "trailer": product_object,
+            "car" if type == TYPE.CAR else "trailer": product_object,
             "product": product,
             "images": urls,
         }
@@ -99,12 +104,19 @@ async def create_product(
             )
 
 
-async def get_cars(session: AsyncSession):
-    stmt = (
-        select(Car)
-        .options(joinedload(Car.product).selectinload(Product.images))
-        .order_by(desc(Car.id))
-    )
+async def get_products(session: AsyncSession, type: str):
+    if type == TYPE.CAR:
+        stmt = (
+            select(Car)
+            .options(joinedload(Car.product).selectinload(Product.images))
+            .order_by(desc(Car.id))
+        )
+    else:
+        stmt = (
+            select(Trailer)
+            .options(joinedload(Trailer.product).selectinload(Product.images))
+            .order_by(desc(Trailer.id))
+        )
     result: Result = await session.execute(statement=stmt)
-    cars = result.scalars().all()
-    return cars
+    products = result.scalars().all()
+    return products

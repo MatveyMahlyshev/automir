@@ -2,11 +2,17 @@ from fastapi import APIRouter, Depends, UploadFile, File, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
-from .schemas import ProductCreateCar, ProductGetCars, ProductCreateTrailer
+from .schemas import (
+    ProductCreateCar,
+    ProductGetCars,
+    ProductCreateTrailer,
+    ProductGetTrailers,
+)
 from .dependencies import get_product_create_car, get_product_create_trailer
 from . import crud
 
 from core.models.db_helper import db_helper
+
 
 router = APIRouter(tags=["Products"])
 
@@ -18,7 +24,7 @@ async def create_car(
     session: AsyncSession = Depends(db_helper.scoped_session_dependency),
 ):
     return await crud.create_product(
-        product_in=product, images=images, session=session, type="car"
+        product_in=product, images=images, session=session, type=crud.TYPE.CAR
     )
 
 
@@ -29,7 +35,7 @@ async def create_trailer(
     session: AsyncSession = Depends(db_helper.scoped_session_dependency),
 ):
     return await crud.create_product(
-        product_in=product, images=images, session=session, type="trailer"
+        product_in=product, images=images, session=session, type=crud.TYPE.TRAILER
     )
 
 
@@ -37,4 +43,11 @@ async def create_trailer(
 async def get_cars(
     session: AsyncSession = Depends(db_helper.scoped_session_dependency),
 ):
-    return await crud.get_cars(session=session)
+    return await crud.get_products(session=session, type=crud.TYPE.CAR)
+
+
+@router.get("/get/trailers/", response_model=list[ProductGetTrailers])
+async def get_trailers(
+    session: AsyncSession = Depends(db_helper.scoped_session_dependency),
+):
+    return await crud.get_products(session=session, type=crud.TYPE.TRAILER)

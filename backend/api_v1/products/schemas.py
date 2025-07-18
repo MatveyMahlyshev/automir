@@ -51,3 +51,8 @@ class ProductTrailerBase(BaseModel):
 
 class ProductCreateTrailer(ProductTrailerBase):
     price: int = Field(gt=0)
+
+class ProductGetTrailers(ProductTrailerBase):
+    id: int
+    product: Product
+    model_config = ConfigDict(from_attributes=True)
