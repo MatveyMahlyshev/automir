@@ -8,11 +8,11 @@ class ProductImage(BaseModel):
 
 class Product(BaseModel):
     price: int
-    images: list[ProductImage] = []  # Важно: список изображений
+    images: list[ProductImage] = []
     model_config = ConfigDict(from_attributes=True)
 
 class ProductCarBase(BaseModel):
-    title: str = Field(min_length=5)
+    title: str = Field(max_length=50)
     engine: Optional[str] = None
     fuel_type: Optional[str] = None
     year: int = Field(gt=1900, le=datetime.now().year)
@@ -36,3 +36,18 @@ class ProductGetCars(ProductCarBase):
     id: int
     product: Product
     model_config = ConfigDict(from_attributes=True)
+
+class ProductTrailerBase(BaseModel):
+    title: str = Field(max_length=50)
+    axes_count: Optional[str] = None
+    load_capacity: Optional[str] = None
+    trailer_length: str = Field(max_length=50)
+    trailer_width: str = Field(max_length=50)
+    trailer_height: str = Field(max_length=50)
+    trailer_weight: str = Field(max_length=50)
+    body_volume: Optional[str] = None
+    description: Optional[str] = None
+
+
+class ProductCreateTrailer(ProductTrailerBase):
+    price: int = Field(gt=0)

@@ -1,7 +1,7 @@
 from fastapi import Form, Depends
 from typing import Optional
 
-from .schemas import ProductCreateCar
+from .schemas import ProductCreateCar, ProductCreateTrailer
 
 
 def get_product_create_car(
@@ -35,6 +35,32 @@ def get_product_create_car(
         steering_wheel=steering_wheel,
         generation=generation,
         trim_level=trim_level,
+        description=description,
+        price=price,
+    )
+
+
+def get_product_create_trailer(
+    title: str = Form(...),
+    axes_count: Optional[str] = Form(None),
+    load_capacity: Optional[str] = Form(None),
+    trailer_length: str = Form(...),
+    trailer_width: str = Form(...),
+    trailer_height: str = Form(...),
+    trailer_weight: str = Form(...),
+    body_volume: Optional[str] = Form(None),
+    description: Optional[str] = Form(None),
+    price: int = Form(...),
+) -> ProductCreateTrailer:
+    return ProductCreateTrailer(
+        title=title,
+        axes_count=axes_count,
+        load_capacity=load_capacity,
+        trailer_length=trailer_length,
+        trailer_width=trailer_width,
+        trailer_height=trailer_height,
+        trailer_weight=trailer_weight,
+        body_volume=body_volume,
         description=description,
         price=price,
     )
