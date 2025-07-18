@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Depends, UploadFile, File, status
+from fastapi import APIRouter, Depends, UploadFile, File, status, Path, Query
 from sqlalchemy.ext.asyncio import AsyncSession
-
+from typing import Union
 
 from .schemas import (
     ProductCreateCar,
@@ -39,15 +39,9 @@ async def create_trailer(
     )
 
 
-@router.get("/get_cars/", response_model=list[ProductGetCars])
-async def get_cars(
+@router.get("/", response_model=list[ProductGetCars | ProductGetTrailers])
+async def get_products(
+    product_type: str = Query(..., regex="^(car|trailer)$"),
     session: AsyncSession = Depends(db_helper.scoped_session_dependency),
 ):
-    return await crud.get_products(session=session, type=crud.TYPE.CAR)
-
-
-@router.get("/get_trailers/", response_model=list[ProductGetTrailers])
-async def get_trailers(
-    session: AsyncSession = Depends(db_helper.scoped_session_dependency),
-):
-    return await crud.get_products(session=session, type=crud.TYPE.TRAILER)
+    return await crud.get_products(session=session, type=product_type)
