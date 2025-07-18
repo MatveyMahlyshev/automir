@@ -39,14 +39,14 @@ async def create_trailer(
     )
 
 
-@router.get("/get/cars/", response_model=list[ProductGetCars])
+@router.get("/get_cars/", response_model=list[ProductGetCars])
 async def get_cars(
     session: AsyncSession = Depends(db_helper.scoped_session_dependency),
 ):
     return await crud.get_products(session=session, type=crud.TYPE.CAR)
 
 
-@router.get("/get/trailers/", response_model=list[ProductGetTrailers])
+@router.get("/get_trailers/", response_model=list[ProductGetTrailers])
 async def get_trailers(
     session: AsyncSession = Depends(db_helper.scoped_session_dependency),
 ):
