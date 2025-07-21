@@ -39,7 +39,12 @@ async def create_trailer(
     )
 
 
-@router.get("/", response_model=list[ProductGetCar | ProductGetTrailer] | ProductGetCar | ProductGetTrailer)
+@router.get(
+    "/",
+    response_model=list[ProductGetCar | ProductGetTrailer]
+    | ProductGetCar
+    | ProductGetTrailer,
+)
 async def get_products(
     product_type: str = Query(..., regex="^(car|trailer)$"),
     product_id: Optional[int] = Query(None),

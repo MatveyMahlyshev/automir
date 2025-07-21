@@ -1,7 +1,8 @@
-from fastapi import Form, Depends
+from fastapi import Form, Depends, Query, Body, HTTPException
 from typing import Optional
 
 from .schemas import ProductCreateCar, ProductCreateTrailer
+from .crud import TYPE
 
 
 def get_product_create_car(
