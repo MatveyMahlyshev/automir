@@ -114,3 +114,24 @@ async def get_products(session: AsyncSession, type: str):
     result: Result = await session.execute(statement=stmt)
     products = result.scalars().all()
     return products
+
+
+async def get_product_by_id(type: str, id: int, session: AsyncSession):
+    if type == TYPE.CAR:
+        product_object = Car
+    else:
+        product_object = Trailer
+    stmt = (
+        select(product_object)
+        .options(joinedload(product_object.product).selectinload(Product.images))
+        .where(product_object.id == id)
+    )
+
+    result: Result = await session.execute(statement=stmt)
+    product = result.scalar_one_or_none()
+    if not product:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Product of type:{type} with id:{id} not found",
+        )
+    return product

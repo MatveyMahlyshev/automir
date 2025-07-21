@@ -32,7 +32,7 @@ class ProductCreateCar(ProductCarBase):
     price: int = Field(gt=0)
 
 
-class ProductGetCars(ProductCarBase):
+class ProductGetCar(ProductCarBase):
     id: int
     product: Product
     model_config = ConfigDict(from_attributes=True)
@@ -52,7 +52,7 @@ class ProductTrailerBase(BaseModel):
 class ProductCreateTrailer(ProductTrailerBase):
     price: int = Field(gt=0)
 
-class ProductGetTrailers(ProductTrailerBase):
+class ProductGetTrailer(ProductTrailerBase):
     id: int
     product: Product
     model_config = ConfigDict(from_attributes=True)
