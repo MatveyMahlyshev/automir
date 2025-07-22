@@ -9,7 +9,7 @@ import vk from "../../img/vk-logo.png"
 
 declare global {
     interface Window {
-        ymaps?: any;
+        ymaps?: typeof import ('yandex-maps');
     }
 }
 

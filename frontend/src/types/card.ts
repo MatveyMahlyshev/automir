@@ -1,28 +1,27 @@
 export interface CarStats {
-    name: string,
+    title: string,
+    engine: string,
+    fuel_type: string,
     year: number,
-    gen: string,
-    mileage: number,
-    passport: string,
-    owners_count: number,
-    modification: string,
-    conditions: string,
-    engine_capacity: string,
-    engine_type: string,
-    gearbox: string,
-    drive: string,
+    transmission: string,
+    drivetrain: string,
     body_type: string,
-    wheel_position: string,
+    color: string,
+    mileage: string,
+    owners: string,
+    steering_wheel: string,
+    generation: string,
+    trim_level: string,
+    description: string,
     status: string,
-    desc: string,
 }
 
 export interface TrailerStats {
-    name: string,
+    title: string,
     trailer_length: string,
     trailer_width: string,
     trailer_height: string,
     trailer_weight: string,
     spring_type: string,
-    desc: string
+    description: string
 }

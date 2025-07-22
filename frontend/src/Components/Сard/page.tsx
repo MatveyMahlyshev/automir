@@ -3,6 +3,7 @@ import {StaticImageData} from "next/image";
 import {CarStats, TrailerStats} from "@/types/card";
 import Link from "next/link";
 import Carousel from "@/Components/Carousel/page";
+import {routes} from "@/routes";
 
 function isCarStats(stats: CarStats | TrailerStats): stats is CarStats {
     return 'mileage' in stats;
@@ -15,23 +16,23 @@ function isTrailerStats(stats: CarStats | TrailerStats): stats is TrailerStats {
 export default function Card({image, stats, price}: {
     image: Array<StaticImageData>,
     stats: CarStats | TrailerStats,
-    price: number
+    price: string
 }) {
 
     return (
         <div className="flex flex-col pt-3 pb-5 border-2 pl-2 pr-2 rounded-2xl text-base lg:text-xl justify-between">
             <div className="w-full h-2/3 flex items-center justify-center">
-                <Carousel slides={image}/>
+                <Carousel slides={image} height={100}/>
             </div>
             <div>
                 <div>
                     <ul>
                         <li className='font-bold'>
-                            <h3>{stats.name} {isCarStats(stats) ? stats.year : ''}</h3></li>
+                            <h3>{stats.title} {isCarStats(stats) ? stats.year : ''}</h3></li>
                         {isCarStats(stats) && (
                             <>
-                                <li>Поколение: {stats.gen}</li>
-                                <li>Комплектация: {stats.modification}</li>
+                                <li>Поколение: {stats.generation}</li>
+                                <li>Комплектация: {stats.trim_level}</li>
                             </>
                         )}
                         {isTrailerStats(stats) && (
@@ -44,7 +45,7 @@ export default function Card({image, stats, price}: {
                 </div>
 
                 <div className="py-5">
-                    <span className="line-clamp-5">{stats.desc}</span>
+                    <span className="line-clamp-5">{stats.description}</span>
                 </div>
 
                 <div className="flex flex-col">
@@ -57,7 +58,7 @@ export default function Card({image, stats, price}: {
                         </button>
 
                         <Link
-                            href="/"
+                            href={routes.product}
                             className="text-blue-700 hover:underline underline-offset-4 whitespace-nowrap transition-all duration-200 hover:text-blue-900"
                         >
                             Развернуть<span className="text-xl">&rarr;</span>
