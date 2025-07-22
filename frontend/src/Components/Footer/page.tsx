@@ -18,7 +18,7 @@ export default function Footer(){
         const initMap = () => {
             if (window.ymaps) {
                 window.ymaps.ready(() => {
-                    const center = [61.250380, 46.677216]; // координаты центра
+                    const center = [61.250380, 46.677216];
 
                     const map = new window.ymaps.Map("yandex-map", {
                         center: center,
