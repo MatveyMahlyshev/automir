@@ -7,7 +7,7 @@ from sqlalchemy.orm import joinedload
 
 from .schemas import ProductCreateCar, ProductCreateTrailer
 from core.models import Car, Product, ProductImage, Trailer
-from services.s3 import upload_file_to_s3, delete_file_from_s3
+from services.s3 import upload_file_to_s3
 
 
 class TYPE:
@@ -72,10 +72,9 @@ async def create_product(
 
         for img in images:
             try:
-                content = await img.read()
 
                 s3_image = await upload_file_to_s3(
-                    content, product.id, img.content_type
+                    img, product.id, img.content_type
                 )
                 uploaded_images_keys.append(s3_image["unique_name"])
                 urls.append(s3_image["url"])
@@ -93,8 +92,8 @@ async def create_product(
         }
     except Exception as e:
         await session.rollback()
-        for key in uploaded_images_keys:
-            await delete_file_from_s3(key)
+        # for key in uploaded_images_keys:
+        #     await delete_file_from_s3(key)
 
         if isinstance(e, IntegrityError):
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
