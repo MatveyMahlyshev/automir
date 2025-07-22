@@ -9,7 +9,7 @@ import vk from "../../img/vk-logo.png"
 
 declare global {
     interface Window {
-        ymaps?: any;
+        ymaps?: typeof import ('yandex-maps');
     }
 }
 
@@ -18,7 +18,7 @@ export default function Footer(){
         const initMap = () => {
             if (window.ymaps) {
                 window.ymaps.ready(() => {
-                    const center = [61.250380, 46.677216]; // координаты центра
+                    const center = [61.250380, 46.677216];
 
                     const map = new window.ymaps.Map("yandex-map", {
                         center: center,
