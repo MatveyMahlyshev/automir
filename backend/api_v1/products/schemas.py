@@ -17,7 +17,6 @@ class ProductCarBase(BaseModel):
     fuel_type: Optional[str] = None
     year: int = Field(gt=1900, le=datetime.now().year)
     transmission: Optional[str] = None
-    drivetrain: Optional[str] = None
     body_type: Optional[str] = None
     color: Optional[str] = None
     mileage: int = Field(ge=0)

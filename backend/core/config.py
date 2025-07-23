@@ -7,7 +7,7 @@ load_dotenv()
 
 
 class DBSettings(BaseModel):
-    url: str = "postgresql+asyncpg://automir:automir@db:5432/automir_db"
+    url: str = "postgresql+asyncpg://automir:automir@localhost:5432/automir_db"
     echo: bool = False
 
 

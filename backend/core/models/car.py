@@ -10,7 +10,6 @@ class Car(Base):
     fuel_type: Mapped[str] = mapped_column(String(50), nullable=True)
     year: Mapped[int] = mapped_column(Integer)
     transmission: Mapped[str] = mapped_column(String(50), nullable=True)
-    drivetrain: Mapped[str] = mapped_column(String(50), nullable=True)
     body_type: Mapped[str] = mapped_column(String(50), nullable=True)
     color: Mapped[str] = mapped_column(String(50), nullable=True)
     mileage: Mapped[int] = mapped_column(Integer)
