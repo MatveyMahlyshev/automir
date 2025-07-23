@@ -30,7 +30,6 @@ async def create_product(
                 fuel_type=product_in.fuel_type,
                 year=product_in.year,
                 transmission=product_in.transmission,
-                drivetrain=product_in.drivetrain,
                 body_type=product_in.body_type,
                 color=product_in.color,
                 mileage=product_in.mileage,
