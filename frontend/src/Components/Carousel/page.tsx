@@ -3,7 +3,7 @@ import {StaticImageData} from "next/image";
 import Image from "next/image";
 import {useState} from "react";
 
-export default function Carousel({slides, height}: { slides: StaticImageData[], height: number | string }) {
+export default function Carousel({slides}: { slides: StaticImageData[]}) {
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -20,43 +20,41 @@ export default function Carousel({slides, height}: { slides: StaticImageData[], 
     };
 
     return (
-        <div className="flex flex-row w-full items-center overflow-hidden relative rounded-2xl">
+        <div className="relative w-full overflow-hidden rounded-2xl">
             <button
                 onClick={goToPrevious}
-                className="absolute left-4 z-10 w-12 h-12 bg-white/60 rounded-full flex items-center justify-center hover:bg-white/80 transition-all"
+                className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/60 rounded-full flex items-center justify-center hover:bg-white/80 transition-all"
             >
                 <div className="relative w-6 h-6">
-                    <span
-                        className="absolute top-1/2 left-0 w-full h-0.5 bg-black transform -translate-y-1/2 -rotate-45 origin-left"></span>
-                    <span
-                        className="absolute top-1/2 left-0 w-full h-0.5 bg-black transform -translate-y-1/2 rotate-45 origin-left"></span>
-                </div>
-            </button>
-            <button
-                onClick={goToNext}
-                className="absolute right-4 z-10 w-12 h-12 bg-white/60 rounded-full flex items-center justify-center hover:bg-white/80 transition-all"
-            >
-                <div className="relative w-6 h-6">
-                    <span
-                        className="absolute top-1/2 right-0 w-full h-0.5 bg-black transform -translate-y-1/2 rotate-45 origin-right"></span>
-                    <span
-                        className="absolute top-1/2 right-0 w-full h-0.5 bg-black transform -translate-y-1/2 -rotate-45 origin-right"></span>
+                    <span className="absolute top-1/2 left-0 w-full h-0.5 bg-black transform -translate-y-1/2 -rotate-45 origin-left" />
+                    <span className="absolute top-1/2 left-0 w-full h-0.5 bg-black transform -translate-y-1/2 rotate-45 origin-left" />
                 </div>
             </button>
 
-            <div className="flex items-center">
+            <button
+                onClick={goToNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-white/60 rounded-full flex items-center justify-center hover:bg-white/80 transition-all"
+            >
+                <div className="relative w-6 h-6">
+                    <span className="absolute top-1/2 right-0 w-full h-0.5 bg-black transform -translate-y-1/2 rotate-45 origin-right" />
+                    <span className="absolute top-1/2 right-0 w-full h-0.5 bg-black transform -translate-y-1/2 -rotate-45 origin-right" />
+                </div>
+            </button>
+
+            <div className="flex transition-transform duration-500 ease-in-out"
+                 style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                 {slides.map((slide, index) => (
-                    <div key={index} className={`min-w-full max-h-${height}`}>
+                    <div key={index} className="flex-shrink-0 w-full aspect-video relative">
                         <Image
                             src={slide}
-                            alt={`Slide`}
-                            placeholder="blur"
-                            className="w-full min-h-auto"
-                            style={{transform: `translateX(-${currentIndex * 100}%)`, zIndex: -1}}
+                            alt={`Slide ${index}`}
+                            fill
+                            className="object-contain rounded-2xl"
                         />
                     </div>
                 ))}
             </div>
         </div>
+
     );
 }
