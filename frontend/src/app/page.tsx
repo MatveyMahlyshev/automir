@@ -19,7 +19,7 @@ export default function Home() {
                 steering_wheel: 'Левый',
                 generation: 'Предпоследнее',
                 trim_level: 'Prestige',
-                description: 'descriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription',
+                description: 'descriptiondescr iptiondescriptiondescri ptiondescriptiond escrip tiondescrip tiondes criptiondesc ript iondescri ptiondesc riptiondes cript iondesc riptiond escr iptio nde scri tion escr ptiondes cripti ondes ripti ondesc iption descripti ondescripti ondesc ription descrip tiond esc riptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescriptiondescription',
                 status: 'свободно',
             }} price={'3 950 000'}/>
         </main>

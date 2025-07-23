@@ -22,7 +22,7 @@ export default function Card({image, stats, price}: {
     return (
         <div className="flex flex-col pt-3 pb-5 border-2 pl-2 pr-2 rounded-2xl text-base lg:text-xl justify-between">
             <div className="w-full h-2/3 flex items-center justify-center">
-                <Carousel slides={image} height={100}/>
+                <Carousel slides={image}/>
             </div>
             <div>
                 <div>
