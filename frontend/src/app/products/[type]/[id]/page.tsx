@@ -93,31 +93,31 @@ export default function ProductPage({params}: { params: Promise<{ type: string, 
                         <ul className="space-y-1 list-['-'] pl-5">
                             {isCarStats(product) && (
                                 <>
-                                    <li>Год выпуска: {product.year}</li>
-                                    <li>Поколение: {product.generation}</li>
-                                    <li>Объем двигателя: {product.engine}</li>
-                                    <li>Комплектация: {product.trim_level}</li>
-                                    <li>Коробка передач: {product.transmission}</li>
-                                    <li>Тип двигателя: {product.fuel_type}</li>
-                                    <li>Кузов: {product.body_type}</li>
-                                    <li>Цвет: {product.color}</li>
-                                    <li>Пробег: {product.mileage}</li>
-                                    <li>Кол-во владельцев: {product.owners}</li>
-                                    <li>Руль: {product.steering_wheel}</li>
+                                    {product.year && (<li>Год выпуска: {product.year}</li>)}
+                                    {product.engine && (<li>Объем: {product.engine}</li>)}
+                                    {product.trim_level && (<li>Комплектация: {product.trim_level}</li>)}
+                                    {product.fuel_type && (<li>Тип двигателя: {product.fuel_type}</li>)}
+                                    {product.transmission && (<li>Коробка передач: {product.transmission}</li>)}
+                                    {product.body_type && (<li>Кузов: {product.body_type}</li>)}
+                                    {product.color && (<li>Цвет: {product.color}</li>)}
+                                    {product.mileage && (<li>Пробег: {product.mileage}</li>)}
+                                    {product.owners && (<li>Кол-во владельцев: {product.owners}</li>)}
+                                    {product.steering_wheel && (<li>Руль: {product.steering_wheel}</li>)}
+                                    {product.generation && (<li>Поколение: {product.generation}</li>)}
                                 </>
                             )}
                             {isTrailerStats(product) && (
                                 <>
-                                    <li>Количество осей: {product.axis_count}</li>
-                                    <li>Грузоподъемность: {product.load_capacity}</li>
-                                    <li>Длина: {product.trailer_length}</li>
-                                    <li>Ширина: {product.trailer_width}</li>
-                                    <li>Высота: {product.trailer_height}</li>
-                                    <li>Вес: {product.trailer_weight}</li>
-                                    <li>Объем: {product.body_volume}</li>
+                                    {product.axis_count && (<li>Количество осей: {product.axis_count}</li>)}
+                                    {product.load_capacity && (<li>Грузоподъемность: {product.load_capacity})</li>)}
+                                    {product.trailer_length && (<li>Длина: {product.trailer_length}</li>)}
+                                    {product.trailer_width && (<li>Ширина: {product.trailer_width}</li>)}
+                                    {product.trailer_height && (<li>Высота: {product.trailer_height}</li>)}
+                                    {product.trailer_weight && (<li>Вес: {product.trailer_weight}</li>)}
+                                    {product.body_volume && (<li>Объем: {product.body_volume}</li>)}
                                 </>
 
-                                )}
+                            )}
                         </ul>
 
                         <div className="mt-6">

@@ -53,6 +53,7 @@ export default function useProduct(type: string, id: number) {
                 const response = await fetch(
                     `http://localhost:8000/api/v1/products/?product_type=${type}&product_id=${id}`
                 );
+                console.log(response);
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
