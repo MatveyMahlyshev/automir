@@ -1,5 +1,4 @@
 'use client'
-import {StaticImageData} from "next/image";
 import {CarStats, TrailerStats} from "@/types/card";
 import Link from "next/link";
 import Carousel from "@/Components/Carousel/page";
@@ -13,10 +12,9 @@ function isTrailerStats(stats: CarStats | TrailerStats): stats is TrailerStats {
     return 'trailer_length' in stats;
 }
 
-export default function Card({image, stats, price}: {
-    image: Array<StaticImageData>,
+export default function Card({image, stats}: {
+    image: string[],
     stats: CarStats | TrailerStats,
-    price: string
 }) {
 
     return (
@@ -49,7 +47,7 @@ export default function Card({image, stats, price}: {
                 </div>
 
                 <div className="flex flex-col">
-                    <p className='py-10'>Цена: {price}</p>
+                    <p className='py-10'>Цена: {stats.product.price}</p>
                     <div className="flex items-center justify-around flex-col lg:flex-row">
                         <button
                             type="submit"
@@ -58,7 +56,7 @@ export default function Card({image, stats, price}: {
                         </button>
 
                         <Link
-                            href={routes.product}
+                            href={routes.products + (isCarStats(stats) ? `/car/${stats.id}` : `/trailer/${stats.id}`)}
                             className="text-blue-700 hover:underline underline-offset-4 whitespace-nowrap transition-all duration-200 hover:text-blue-900"
                         >
                             Развернуть<span className="text-xl">&rarr;</span>

@@ -1,10 +1,9 @@
 'use client'
-import {StaticImageData} from "next/image";
 import Image from "next/image";
 import {useState} from "react";
 
-export default function Carousel({slides}: { slides: StaticImageData[]}) {
-
+export default function Carousel({slides}: { slides: string[]}) {
+    console.log("Слайды: " + slides);
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const goToPrevious = () => {
@@ -46,7 +45,7 @@ export default function Carousel({slides}: { slides: StaticImageData[]}) {
                 {slides.map((slide, index) => (
                     <div key={index} className="flex-shrink-0 w-full aspect-video relative">
                         <Image
-                            src={slide}
+                            src={`${slide}`}
                             alt={`Slide ${index}`}
                             fill
                             className="object-contain rounded-2xl"

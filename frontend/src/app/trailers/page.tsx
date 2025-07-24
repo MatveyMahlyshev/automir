@@ -1,5 +1,4 @@
 // import Card from "@/Components/Сard/page";
-// import trailer_plug from '../../img/trailer-plug.jpg'
 
 export default function trailers() {
     return (
