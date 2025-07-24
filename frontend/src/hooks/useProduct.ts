@@ -51,11 +51,7 @@ export default function useProduct(type: string, id: number) {
             try {
                 setLoading(true);
                 const response = await fetch(
-<<<<<<< HEAD:frontend/src/hooks/useCar.ts
-                    `http://192.168.0.7:8000/api/v1/products/?product_type=car&product_id=${id}`
-=======
                     `http://localhost:8000/api/v1/products/?product_type=${type}&product_id=${id}`
->>>>>>> frontend:frontend/src/hooks/useProduct.ts
                 );
 
                 if (!response.ok) {

@@ -9,11 +9,7 @@ export default function useProducts(type: string) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-<<<<<<< HEAD:frontend/src/hooks/useCars.ts
-                const response = id ? await fetch(`http://192.168.0.7:8000/api/v1/products/?product_type=car&product_id=${id}`) : await fetch('http://192.168.0.7:8000/api/v1/products/?product_type=car');
-=======
                 const response = await fetch(`http://localhost:8000/api/v1/products/?product_type=${type}`);
->>>>>>> frontend:frontend/src/hooks/useProducts.ts
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
                 setProducts(data);
