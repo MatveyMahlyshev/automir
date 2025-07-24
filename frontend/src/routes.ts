@@ -5,5 +5,5 @@ export const routes = {
     auth: '/auth',
     register: '/register',
     trailers: '/trailers',
-    product: '/product',
+    products: '/products',
 } as const
