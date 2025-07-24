@@ -9,7 +9,7 @@ export default function useCars(id?:number) {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = id ? await fetch(`http://192.168.0.7:8000/api/v1/products/?product_type=car&product_id=${id}`) : await fetch('http://localhost:8000/api/v1/products/?product_type=car');
+                const response = id ? await fetch(`http://192.168.0.7:8000/api/v1/products/?product_type=car&product_id=${id}`) : await fetch('http://192.168.0.7:8000/api/v1/products/?product_type=car');
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
                 setCars(data);
