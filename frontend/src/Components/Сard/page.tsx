@@ -36,7 +36,7 @@ export default function Card({image, stats}: {
                         {isTrailerStats(stats) && (
                             <>
                                 <li>Грузоподъемность: {stats.trailer_weight}</li>
-                                <li>Количество осей: {stats.spring_type}</li>
+                                <li>Количество осей: {stats.axis_count}</li>
                             </>
                         )}
                     </ul>
@@ -47,7 +47,7 @@ export default function Card({image, stats}: {
                 </div>
 
                 <div className="flex flex-col">
-                    <p className='py-10'>Цена: {stats.product.price}</p>
+                    <p className='py-10'>Цена: {stats.product.price}₽</p>
                     <div className="flex items-center justify-around flex-col lg:flex-row">
                         <button
                             type="submit"

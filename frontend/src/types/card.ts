@@ -24,17 +24,20 @@ export interface CarStats {
 
 export interface TrailerStats {
     title: string,
+    axis_count: string,
+    load_capacity: string,
     trailer_length: string,
     trailer_width: string,
     trailer_height: string,
     trailer_weight: string,
-    spring_type: string,
+    body_volume: string,
     description: string,
     id: number;
     product: {
         price: number;
         images: {
-            image: string[];
-        };
+            image: string;
+        }[];
     };
+    status: string;
 }
