@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { CarStats } from "@/types/card";
+import {CarStats, TrailerStats} from "@/types/card";
 
-export default function useCar(id: number) {
+export default function useProduct(type: string, id: number) {
 
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -27,14 +27,31 @@ export default function useCar(id: number) {
         },
         status: 'Не найдено',
     }
-    const [car, setCar] = useState<CarStats>(nullCar);
+    const nullTrailer:TrailerStats = {
+        title: 'Не найдено',
+        axis_count: 'Не найдено',
+        load_capacity: 'Не найдено',
+        trailer_length: 'Не найдено',
+        trailer_width: 'Не найдено',
+        trailer_height: 'Не найдено',
+        trailer_weight: 'Не найдено',
+        body_volume: 'Не найдено',
+        description: 'Не найдено',
+        id: 0,
+        product: {
+            price: 0,
+            images: [],
+        },
+        status: 'Не найдено',
+    }
+    const [product, setProduct] = useState<CarStats | TrailerStats>(nullCar || nullTrailer);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
                 const response = await fetch(
-                    `http://localhost:8000/api/v1/products/?product_type=car&product_id=${id}`
+                    `http://localhost:8000/api/v1/products/?product_type=${type}&product_id=${id}`
                 );
 
                 if (!response.ok) {
@@ -43,11 +60,10 @@ export default function useCar(id: number) {
 
                 const data = await response.json();
 
-                // Преобразуем данные в один объект
                 if (Array.isArray(data) && data.length > 0) {
-                    setCar(data[0]); // Берем первый элемент массива
+                    setProduct(data[0]);
                 } else if (typeof data === 'object') {
-                    setCar(data); // Если пришел объект
+                    setProduct(data);
                 } else {
                     throw new Error('Invalid data format');
                 }
@@ -59,7 +75,7 @@ export default function useCar(id: number) {
         };
 
         if (id) fetchData();
-    }, [id]);
+    }, [type, id]);
 
-    return { car, loading, error };
+    return { product, loading, error };
 }
