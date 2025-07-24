@@ -34,7 +34,7 @@ export default function useCar(id: number) {
             try {
                 setLoading(true);
                 const response = await fetch(
-                    `http://localhost:8000/api/v1/products/?product_type=car&product_id=${id}`
+                    `/api/v1/products/?product_type=car&product_id=${id}`
                 );
 
                 if (!response.ok) {
