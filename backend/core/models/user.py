@@ -8,7 +8,6 @@ class User(Base):
     email: Mapped[str] = mapped_column(String(50), unique=True)
     password_hash: Mapped[str] = mapped_column(String(60))
     is_superuser: Mapped[bool] = mapped_column(Boolean, default=False)
-    avatar: Mapped[bytes] = mapped_column(LargeBinary)
     name: Mapped[str] = mapped_column(String(50))
     surname: Mapped[str] = mapped_column(String(50))
     patronymic: Mapped[str] = mapped_column(String(50))
